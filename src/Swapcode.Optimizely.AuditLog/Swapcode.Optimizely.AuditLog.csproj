@@ -13,6 +13,8 @@
     <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
     <AssemblyVersion>1.0.0.1</AssemblyVersion>
     <FileVersion>1.0.0.1</FileVersion>
+    <!-- Use package version like this, until official Optimizely CMS net5.0 release is done -->
+    <PackageVersion>1.0.0-preview.1</PackageVersion>
   </PropertyGroup>
 
 </Project>
