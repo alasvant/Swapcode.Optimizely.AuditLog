@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<languages>
+  <language name="English" id="en">
+    <changelog>
+      <activitytypes>
+        <contentsecurity>
+          <description>Content security</description>
+          <!-- ContentSecurityActivity EPiServer.Security.SecuritySaveType enum localizations -->
+          <none>All</none>
+          <recursivereplace>Recursive replace</recursivereplace>
+          <recursivemodify>Recursive modify</recursivemodify>
+          <modify>Modify</modify>
+          <replace>Replace</replace>
+          <replacechildpermissions>Replace child permission</replacechildpermissions>
+          <mergechildpermissions>Merge child permission</mergechildpermissions>
+        </contentsecurity>
+      </activitytypes>
+    </changelog>
+  </language>
+</languages>
