@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Authors>Antti Alasvuo</Authors>
+    <Description>Log content access right changes to Optimizely activity log (change log under admin -&gt; tools).</Description>
+    <Copyright>Antti Alasvuo ©2021</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/alasvant/Swapcode.Optimizely.AuditLog</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/alasvant/Swapcode.Optimizely.AuditLog.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Logging,Audit</PackageTags>
+    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
+  </PropertyGroup>
+
+</Project>
