@@ -11,10 +11,9 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>Logging,Audit</PackageTags>
     <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <FileVersion>1.0.0.1</FileVersion>
-    <!-- Use package version like this, until official Optimizely CMS net5.0 release is done -->
-    <PackageVersion>1.0.0-preview.1</PackageVersion>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+    <PackageVersion>1.0.1</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPiServer.CMS.AspNetCore" Version="12.0.2" />
-    <PackageReference Include="EPiServer.CMS.Core" Version="12.0.2" />
+    <PackageReference Include="EPiServer.CMS.AspNetCore" Version="[12.0.3,12.1)" />
+    <PackageReference Include="EPiServer.CMS.Core" Version="[12.0.3,12.1)" />
   </ItemGroup>
 
 </Project>
