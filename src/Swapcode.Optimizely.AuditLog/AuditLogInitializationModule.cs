@@ -122,7 +122,7 @@ namespace Swapcode.Optimizely.AuditLog
             try
             {
                 // what access rights changes were made, target can be user or group (including visitor groups if those are set to be usable to protect content)
-                var permissions = e.ContentSecurityDescriptor?.Entries?.Select(entry => $"{entry.EntityType}: {entry.Name} access level set to: {entry.Access}.");
+                var permissions = e.ContentSecurityDescriptor?.Entries?.Select(entry => $"{entry.EntityType} {entry.Name} access level set to {entry.Access}.").ToList();
 
                 // this is always null/empty, why? one would assume we would get the creator info here
                 //string creator = e.ContentSecurityDescriptor.Creator;
@@ -130,24 +130,16 @@ namespace Swapcode.Optimizely.AuditLog
                 // this is guranteed to return a valid principal, so use this instead of creator
                 string userFromContext = PrincipalInfo.CurrentPrincipal.Identity.Name;
 
-                // create the message of the access rights change
-                string msg = $"Access rights changed by '{userFromContext}' to content id {e.ContentLink}, save type: {e.SecuritySaveType}. Following changes were made: {string.Join(" ", permissions)}";
-
                 // log also using the logger implementation
                 if (_logger.IsEnabled(LogLevel.Information))
                 {
+                    // create the log message of the access rights change(s)
+                    string msg = $"Access rights changed by '{userFromContext}' to content id {e.ContentLink}, save type: {e.SecuritySaveType}. Following changes were made: {string.Join(" ", permissions)}";
+
                     _logger.LogInformation(msg);
                 }
 
-                // the logged data to activity log
-                // we could have multiple keys for example to format the data in the 'change log' view
-                // now simply push everything into one key
-                Dictionary<string, string> activityData = new Dictionary<string, string>
-                {
-                    { "Message", msg }
-                };
-
-                var activity = new ContentSecurityActivity(e.SecuritySaveType, activityData);
+                var activity = new ContentSecurityActivity(e.SecuritySaveType, CreateActivityData(userFromContext, e, permissions));
 
                 var result = _activityRepository.SaveAsync(activity).GetAwaiter().GetResult();
 
@@ -164,6 +156,28 @@ namespace Swapcode.Optimizely.AuditLog
         }
 
         #region Helper methods
+
+        private static Dictionary<string, string> CreateActivityData(string username, ContentSecurityEventArg e, List<string> permissions)
+        {
+            // NOTE! The UI formats the dictionary entries using br as separator
+            // and to not to care how the UI behaves, just add permissions to dictionary
+            // with a Change-X key, so we get those "nicely" printed out in UI
+            // Also it seems the entries are printed out in the order they were inserted to the dictionary
+
+            Dictionary<string, string> messages = new()
+            {
+                { "Message", $"Access rights changed by '{username}'." },
+                { "Target", $"Content id '{e.ContentLink}'." },
+                { "Change", $"Save type '{e.SecuritySaveType}'." }
+            };
+
+            for (int i = 0; i < permissions.Count; i++)
+            {
+                messages.Add($"Change-{i+1}", permissions[i]);
+            }
+
+            return messages;
+        }
 
         /// <summary>
         /// Registers the ContentSecurityActivity
