@@ -10,10 +10,10 @@
     <RepositoryUrl>https://github.com/alasvant/Swapcode.Optimizely.AuditLog.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Logging,Audit</PackageTags>
-    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
-    <AssemblyVersion>1.4.1.0</AssemblyVersion>
-    <FileVersion>1.4.1.0</FileVersion>
-    <PackageVersion>1.4.1</PackageVersion>
+    <PackageReleaseNotes>Removed initialization module implementation.</PackageReleaseNotes>
+    <AssemblyVersion>1.5.0.0</AssemblyVersion>
+    <FileVersion>1.5.0.0</FileVersion>
+    <PackageVersion>1.5.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
