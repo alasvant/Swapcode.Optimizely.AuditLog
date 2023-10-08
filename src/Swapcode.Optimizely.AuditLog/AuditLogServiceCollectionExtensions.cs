@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Swapcode.Optimizely.AuditLog
 {
@@ -21,9 +22,10 @@ namespace Swapcode.Optimizely.AuditLog
                 throw new ArgumentNullException(nameof(services));
             }
 
-            // TODO: Re-implement the initialization module and do it here
+            services.TryAddSingleton<IAuditLogger, AuditLogger>();
 
-            return services.AddEmbeddedLocalization<AuditLogInitializationModule>();
+            // register embedded XML localization files from this assembly
+            return services.AddEmbeddedLocalization<AuditLogger>();
         }
     }
 }
